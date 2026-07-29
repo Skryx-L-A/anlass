@@ -1,0 +1,43 @@
+# Faktenbasis - die einzige Quelle, aus der ein Entwurf schoepfen darf.
+#
+# Jeder Eintrag hat drei Pflichtangaben:
+#   id      Kennung, kurz und stabil. Der Entwurf verweist je Absatz darauf.
+#   claim   Die Aussage, so wie sie im Text auftauchen darf.
+#   source  Die Fundstelle. Wo steht das? Ohne Fundstelle ist es keine Aussage,
+#           sondern eine Erinnerung.
+#
+# Regel: hier steht nur, was belegt ist. Eine Zahl, die im Gespraech
+# auseinanderfaellt, kostet mehr als sie einbringt. Die Pruefstufe schlaegt an,
+# sobald der Text etwas behauptet, das hier nicht steht - Zahlen und Namen
+# ausdruecklich eingeschlossen.
+#
+# Die Werte unten sind erfundene Beispiele. Ersetze sie durch deine eigenen.
+
+facts:
+  - id: cli-crossplatform
+    claim: "Das Kommandozeilenwerkzeug laeuft auf Linux, Windows und macOS; fuer alle drei gibt es fertige Installationspakete."
+    source: "beispiel.example/werkzeug, Fassung 1.4.0"
+
+  - id: cli-offline
+    claim: "Die Verarbeitung laeuft vollstaendig auf dem Geraet; es werden keine Daten an einen Dienst gesendet."
+    source: "beispiel.example/werkzeug, Handbuch Abschnitt 2"
+
+  - id: pipeline-latenz
+    claim: "Die Verarbeitungskette wurde von 7,5 auf 3,8 Sekunden je Durchlauf gesenkt, indem der Erkennungsschritt als dauerhafter Dienst laeuft statt bei jedem Durchlauf neu zu starten."
+    source: "Messprotokoll vom 12.03.2026, sieben Durchlaeufe"
+
+  - id: pipeline-fehler
+    claim: "Ein Umbau auf einen gemeinsamen Datenbus schlug fehl und wurde durch zwei getrennte Busse ersetzt, nachdem die Ursache gemessen statt vermutet wurde."
+    source: "Projekttagebuch, Eintrag vom 04.02.2026"
+
+  - id: team-groesse
+    claim: "Die Umsetzung lag bei zwei Personen; die Aufgabenverteilung und die Entscheidungen sind im Projekttagebuch dokumentiert."
+    source: "Projekttagebuch, Uebersicht"
+
+  - id: tests-abdeckung
+    claim: "Die Testsuite deckt alle oeffentlichen Funktionen ab und laeuft bei jeder Aenderung automatisch durch."
+    source: "beispiel.example/werkzeug, Datei .github/workflows/tests.yml"
+
+  - id: doku-luecken
+    claim: "Die Anleitung nennt ein eigenes Kapitel mit dem, was das Werkzeug nicht kann."
+    source: "beispiel.example/werkzeug, README Abschnitt 'Grenzen'"

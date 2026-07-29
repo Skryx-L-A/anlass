@@ -1,0 +1,6 @@
+profile/
+*.db
+.env
+__pycache__/
+.venv/
+*.egg-info/

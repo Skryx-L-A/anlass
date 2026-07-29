@@ -1,0 +1,34 @@
+# Quellen - Stufe 1. Jede liefert Rohdatensaetze, die Stufe 2 zu einem Lead macht.
+#
+# 'type' waehlt die Quelle aus der Registrierung (anlass.sources.get); alle
+# anderen Schluessel werden unveraendert an den Konstruktor der Quelle
+# weitergereicht (anlass.sources.build_source). Eigene Quellen meldet man mit
+# anlass.sources.register('eigener_name', EigeneKlasse) an.
+#
+# Kein LinkedIn-Modul: bewusst nicht mitgeliefert, siehe der Docstring von
+# anlass/sources/__init__.py. Die Schnittstelle ist offen - wer es will, schreibt
+# sich ein eigenes Modul.
+#
+# Die Werte unten sind erfundene Beispiele.
+
+sources:
+  - type: file
+    path: "./eingelesene-ausschreibungen.json"
+
+  - type: url
+    url: "https://beispiel.example/stellenausschreibung"
+
+  - type: rss
+    url: "https://beispiel.example/stellenanzeigen.rss"
+
+  - type: careerpage
+    url: "https://beispiel.example/karriere"
+    # link_pattern ist optional; ohne sie greift eine kleine Woerterliste
+    # (job, stelle, karriere, career, position, vacancy, ...).
+    fetch_postings: true
+
+  - type: openapi
+    # arbeitnow.com bietet eine freie Job-Schnittstelle ohne Schluessel.
+    # base_url ist konfigurierbar, damit eine andere offene API drangesteckt
+    # werden kann, ohne den Code zu aendern.
+    base_url: "https://www.arbeitnow.com/api/job-board-api"

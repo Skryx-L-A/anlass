@@ -1,0 +1,53 @@
+# Kriterien - dein Regelwerk fuer die Bewertung (Stufe 4).
+#
+# Die Bewertung ist ein Regelwerk und kein Modell. Ein Sprachmodell darf Felder
+# extrahieren, aber nicht bewerten: nur so ist die Punktzahl reproduzierbar,
+# erklaerbar und testbar, und nur so laesst sich zu jeder Ablehnung sagen, an
+# welchem Kriterium sie lag.
+#
+#   name    Kennung des Kriteriums. Taucht in der Begruendung auf.
+#   weight  Punkte, die es beitraegt, wenn 'check' zutrifft.
+#   check   Bedingung ueber die Felder des Leads.
+#
+# Unter 'exclusions' stehen harte Ausschluesse. Sie sind ueberschreibbar, aber
+# nicht abschaltbar: unterhalb der Mindestpunktzahl wird nicht angeschrieben,
+# auch wenn du willst. Das ist die Regel gegen Massenversand, und sie steht
+# absichtlich in der Datei und nicht im Kopf des Nutzers.
+#
+# Die Werte unten sind erfundene Beispiele.
+
+# Werte, auf die sich die Bedingungen unten beziehen duerfen. Ohne diesen
+# Abschnitt liefert 'distance_km' fuer jeden Ort 9999 - kein Absturz, aber
+# das Kriterium trifft dann nie zu, und das faellt niemandem auf.
+context:
+  home_locations: [Beispielstadt, Beispielhausen]
+
+criteria:
+  - name: remote_or_nearby
+    weight: 3
+    check: "remote == true or distance_km(location, home_locations) < 60"
+
+  - name: build_it_yourself
+    weight: 3
+    check: "text_contains_any([bauen, implementieren, eigenverantwortlich, from scratch])"
+
+  - name: doable_alongside_studies
+    weight: 2
+    check: "employment_type in [werkstudent, praktikum, teilzeit]"
+
+  - name: small_organization
+    weight: 2
+    check: "headcount < 200 or text_contains_any([startup, gruenderteam])"
+
+  - name: contact_person_known
+    weight: 1
+    check: "contact_name != null"
+
+exclusions:
+  - "employment_type == vollzeit_unbefristet"
+  - "score < 6"
+
+limits:
+  max_sends_per_day: 5
+  days_between_same_organization: 30
+  min_score: 6

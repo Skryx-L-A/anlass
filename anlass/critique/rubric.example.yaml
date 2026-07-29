@@ -1,0 +1,45 @@
+# Beispiel einer Rubrik. Kopiere die Datei als 'rubric.yaml' neben 'facts.yaml' in
+# dein Profil, wenn du etwas anders gewichten willst. Ohne die Datei gelten genau die
+# Werte, die hier stehen - sie ist die Voreinstellung, aufgeschrieben.
+#
+# Schluessel englisch wie im ganzen Projekt, Werte und Erklaerungen deutsch.
+
+# Wie oft ein Entwurf ueberarbeitet werden darf, bevor der beste Versuch mit seinen
+# offenen Punkten an dich geht. 0 schaltet die Ueberarbeitung ab, gemessen wird
+# trotzdem.
+max_revisions: 3
+
+# Fragt zusaetzlich ein Sprachmodell. Aus, weil die maschinelle Messung offline in
+# Millisekunden laeuft und das Modell einen Aufruf je Runde kostet. Das Modell kann
+# nur abziehen, nie Punkte vergeben - faellt es aus, bleibt die maschinelle Messung.
+use_model: false
+
+# Gewicht je Kriterium. 0 schaltet ein Kriterium ab. Ein unbekannter Name ist ein
+# Fehler und kein Kommentar: ein Tippfehler wuerde sonst still eine Pruefung abschalten.
+criteria:
+  form_eingehalten: 5          # die von der Ausschreibung verlangte Form
+  anrede_passend: 4            # Du oder Sie wie in der Ausschreibung, Name benutzt
+  anlass_konkret: 4            # der Anlass ist woertlich aufgegriffen
+  belege_verteilt: 3           # hoechstens drei Belege je Absatz, kein Sachabsatz ohne
+  ausgeliefertes_genannt: 4    # ein fertiges Ergebnis, nicht nur die Arbeitsweise
+  ein_gedanke_je_absatz: 3     # kein Themensprung im Absatz
+  abschluss_konkret: 3         # konkrete Frage oder konkretes Angebot am Ende
+  keine_floskeln: 3            # kein Bewerbungsdeutsch, kein Konjunktiv-Weichspueler
+  orthographie_einheitlich: 2  # keine ASCII-Umschrift neben echten Umlauten
+  laenge_angemessen: 2         # im gesetzten oder im vernuenftigen Rahmen
+
+settings:
+  max_facts_per_paragraph: 3   # mehr liest sich wie ein abgearbeiteter Katalog
+  min_words_for_citation: 15   # ab dieser Laenge braucht ein Sachabsatz einen Beleg
+  min_words: 60                # nur wenn die Ausschreibung keine Satzanzahl nennt
+  max_words: 320               # dito
+  words_per_sentence: 25       # was ein Satz hoechstens wiegt, wenn eine Satzanzahl gilt
+  min_occasion_overlap: 0.34   # so viel vom Anlass-Zitat muss im Text wieder vorkommen
+
+  # Die Listen unten ersetzen die mitgelieferten vollstaendig, sie ergaenzen sie nicht.
+  # Weglassen heisst: die mitgelieferte Liste gilt.
+  #
+  # fillers: ["hiermit bewerbe ich mich", "mit grossem interesse"]
+  # transliterations: ["fuer", "ueber", "gruesse"]
+  # delivery_markers: ["veroeffentlicht", "release", "laeuft auf"]
+  # offers: ["ich schicke", "ich zeige"]
